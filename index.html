@@ -1,0 +1,1566 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<title>کالاف مارکت | خرید و فروش اکانت کالاف دیوتی موبایل</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%23d9643a'/%3E%3Ctext x='50' y='68' font-size='50' font-family='sans-serif' font-weight='700' fill='white' text-anchor='middle'%3EC%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#ffffff;
+    --surface:#ffffff;
+    --surface-2:#f3f3f1;
+    --fg:#17160f;
+    --fg-dim:#5c5a4e;
+    --border:#e3e1da;
+    --accent:#d9643a;
+    --accent-2:#ffb27a;
+    --accent-fg:#fff8f0;
+    --good:#3f7d4f;
+    --good-bg:#e4f2e6;
+    --warn:#b98a1e;
+    --warn-bg:#f8edd6;
+    --bad:#c0442c;
+    --bad-bg:#fbe6e1;
+    --blue:#3897f0;
+    --blue-bg:#e5f1fd;
+    --gold:#c99a2e;
+    --gold-bg:#faf0d7;
+    --radius:18px;
+    --font:"Vazirmatn","Segoe UI",Tahoma,sans-serif;
+    --mono:"Space Mono",ui-monospace,monospace;
+    color-scheme:light;
+  }
+
+  *{box-sizing:border-box;}
+  html,body{height:100%;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--fg);
+    font-family:var(--font);
+    direction:rtl;
+    padding-left:max(16px, env(safe-area-inset-left,0px));
+    padding-right:max(16px, env(safe-area-inset-right,0px));
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{max-width:100%;}
+  [hidden]{display:none!important;}
+  h1,h2,h3{font-family:var(--font); font-weight:700; text-wrap:balance; margin:0;}
+  p{margin:0; line-height:1.8;}
+  a{color:inherit;}
+  button{font-family:inherit;}
+  ::selection{background:var(--accent); color:var(--accent-fg);}
+  *:focus-visible{outline:2px solid var(--accent); outline-offset:2px;}
+
+  .glow{
+    position:fixed; inset:0; z-index:-1;
+    background:
+      radial-gradient(640px 420px at 85% -5%, rgba(217,100,58,.10), transparent 70%),
+      radial-gradient(520px 360px at 5% 10%, rgba(56,151,240,.07), transparent 70%);
+  }
+
+  .wrap{max-width:1080px; margin:0 auto;}
+
+  .top-banner{
+    background:linear-gradient(90deg, var(--accent), #ffae63 60%, var(--accent));
+    color:#241404; font-size:.82rem; font-weight:700; text-align:center;
+    padding:9px 14px; border-radius:0 0 14px 14px; margin:0 -16px;
+    display:flex; align-items:center; justify-content:center; gap:8px; flex-wrap:wrap;
+  }
+  .top-banner.gold{background:linear-gradient(90deg, var(--gold), #fff1c2 60%, var(--gold)); color:#2e2306;}
+  .top-banner b{font-weight:800;}
+
+  header.bar{
+    position:sticky; top:0; z-index:20;
+    display:flex; align-items:center; justify-content:space-between;
+    gap:12px; padding-block:16px;
+    background:color-mix(in srgb, var(--bg) 88%, transparent);
+    -webkit-backdrop-filter:blur(10px); backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--border); flex-wrap:wrap;
+  }
+  .brand{display:flex; align-items:center; gap:10px; font-size:1.25rem; font-weight:800;}
+  .brand .mark{
+    width:34px; height:34px; border-radius:9px; flex:none;
+    background:linear-gradient(135deg, var(--accent), var(--accent-2));
+    display:flex; align-items:center; justify-content:center; color:var(--accent-fg); font-weight:800; font-size:1rem;
+  }
+  .bar-actions{display:flex; gap:8px; align-items:center;}
+
+  .btn{
+    border:1px solid var(--border); background:var(--surface); color:var(--fg);
+    padding:10px 18px; border-radius:999px; font-size:.92rem; cursor:pointer;
+    transition:transform .15s ease, border-color .15s ease, filter .15s ease; font-weight:500;
+  }
+  .btn:hover{border-color:var(--accent); transform:translateY(-1px);}
+  .btn.primary{background:var(--accent); color:var(--accent-fg); border-color:transparent; font-weight:700;}
+  .btn.primary:hover{filter:brightness(1.07);}
+  .btn.ghost{background:transparent;}
+  .btn.danger{color:var(--bad); border-color:var(--bad);}
+  .btn.gold{background:var(--gold); color:#2e2306; border-color:transparent; font-weight:700;}
+  .btn.blue{background:var(--blue); color:#fff; border-color:transparent; font-weight:700;}
+  .btn.sm{padding:7px 14px; font-size:.82rem;}
+  .btn:disabled{opacity:.5; cursor:not-allowed; transform:none;}
+
+  .coin-pill{
+    display:flex; align-items:center; gap:6px; background:var(--gold-bg); color:var(--gold);
+    border:1px solid color-mix(in srgb, var(--gold) 40%, var(--border));
+    border-radius:999px; padding:6px 8px 6px 12px; font-size:.82rem; font-weight:700; cursor:pointer; white-space:nowrap;
+  }
+  .coin-pill .coin-ic{
+    width:20px; height:20px; border-radius:50%; flex:none;
+    background:radial-gradient(circle at 35% 30%, #fff6d8, var(--gold) 55%, #9c7414 100%);
+    box-shadow:inset 0 0 0 1px rgba(0,0,0,.15); display:flex; align-items:center; justify-content:center; font-size:.68rem; color:#4a3a09; font-weight:800;
+  }
+  .coin-pill .plus{
+    width:18px; height:18px; border-radius:50%; background:var(--accent); color:var(--accent-fg);
+    display:flex; align-items:center; justify-content:center; font-size:.78rem; font-weight:800; flex:none;
+  }
+
+  .hero{padding-block:28px 32px; display:grid; gap:22px;}
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px; font-size:.78rem; letter-spacing:.04em; color:var(--fg-dim);
+    border:1px solid var(--border); border-radius:999px; padding:6px 14px; width:fit-content;
+  }
+  .eyebrow .dot{width:6px; height:6px; border-radius:50%; background:var(--good); flex:none;}
+  .hero h1{font-size:clamp(1.8rem, 6vw, 2.8rem); line-height:1.3; font-weight:800;}
+  .hero h1 em{font-style:normal; color:var(--accent);}
+  .hero p.lead{max-width:60ch; color:var(--fg-dim); font-size:1rem;}
+  .hero-ctas{display:flex; gap:12px; flex-wrap:wrap;}
+
+  .stat-row{
+    display:grid; grid-template-columns:repeat(auto-fit, minmax(130px,1fr)); gap:1px; background:var(--border);
+    border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; margin-top:8px;
+  }
+  .stat{background:var(--surface); padding:14px; display:flex; flex-direction:column; gap:4px; min-width:0;}
+  .stat b{font-family:var(--mono); font-size:1.3rem;}
+  .stat span{font-size:.74rem; color:var(--fg-dim);}
+
+  section{padding-block:28px;}
+  .section-head{display:flex; align-items:baseline; justify-content:space-between; gap:12px; margin-bottom:14px; flex-wrap:wrap;}
+  .section-head h2{font-size:1.3rem;}
+  .section-head p{color:var(--fg-dim); font-size:.86rem;}
+
+  .grid-cards{display:grid; grid-template-columns:repeat(auto-fill, minmax(220px,1fr)); gap:14px;}
+  .card{
+    background:var(--surface); border:1px solid var(--border); border-radius:var(--radius);
+    padding:16px; display:flex; flex-direction:column; gap:9px; min-width:0;
+  }
+  .card img.thumb{width:100%; aspect-ratio:16/10; object-fit:cover; border-radius:12px; background:var(--surface-2);}
+  .card h3{font-size:1rem; overflow-wrap:break-word;}
+  .card .meta{font-size:.78rem; color:var(--fg-dim); display:flex; gap:8px; flex-wrap:wrap; align-items:center;}
+  .card .desc{color:var(--fg-dim); font-size:.84rem; overflow-wrap:break-word;}
+  .price-tag{font-family:var(--mono); font-weight:800; font-size:1.1rem; color:var(--accent);}
+  .tag{
+    display:inline-flex; align-items:center; white-space:nowrap; font-size:.7rem; padding:3px 10px;
+    border-radius:999px; background:var(--surface-2); color:var(--fg-dim); border:1px solid var(--border);
+  }
+  .tag.open{color:var(--good); background:var(--good-bg); border-color:transparent;}
+  .tag.closed{color:var(--bad); background:var(--bad-bg); border-color:transparent;}
+  .tag.accent{color:var(--accent); background:color-mix(in srgb, var(--accent) 14%, var(--surface-2)); border-color:transparent;}
+  .tag.warn{color:var(--warn); background:var(--warn-bg); border-color:transparent;}
+  .tag.gold{color:var(--gold); background:var(--gold-bg); border-color:transparent;}
+  .tag.blue{color:var(--blue); background:var(--blue-bg); border-color:transparent;}
+
+  .verified-badge{
+    display:inline-flex; align-items:center; justify-content:center; width:16px; height:16px; border-radius:50%;
+    background:var(--blue); color:#fff; flex:none;
+  }
+  .verified-badge svg{width:10px; height:10px;}
+
+  .telegram-chip{
+    display:inline-flex; align-items:center; gap:4px; font-size:.76rem; color:var(--blue);
+    background:var(--blue-bg); border-radius:999px; padding:3px 10px; direction:ltr; font-family:var(--mono);
+  }
+
+  footer{border-top:1px solid var(--border); padding-block:20px 32px; margin-top:24px; color:var(--fg-dim); font-size:.8rem; display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap;}
+
+  .modal-backdrop{position:fixed; inset:0; z-index:50; background:rgba(0,0,0,.55); display:flex; align-items:flex-end; justify-content:center;}
+  @media (min-width:640px){ .modal-backdrop{align-items:center; padding:20px;} }
+  .modal{
+    background:var(--surface); border:1px solid var(--border); width:100%; max-width:440px; max-height:92vh; overflow-y:auto;
+    border-radius:20px 20px 0 0; padding:22px max(20px, env(safe-area-inset-right,0px)) max(22px, env(safe-area-inset-bottom,0px)) max(20px, env(safe-area-inset-left,0px));
+    display:flex; flex-direction:column; gap:16px;
+  }
+  .modal.wide{max-width:560px;}
+  @media (min-width:640px){ .modal{border-radius:20px;} }
+  .modal-head{display:flex; align-items:center; justify-content:space-between;}
+  .modal-head h2{font-size:1.15rem;}
+  .icon-btn{background:none; border:none; color:var(--fg-dim); font-size:1.3rem; cursor:pointer; line-height:1; padding:4px;}
+  .tabs{display:flex; background:var(--surface-2); border-radius:999px; padding:4px; gap:4px;}
+  .tabs button{flex:1; border:none; background:transparent; color:var(--fg-dim); padding:9px; border-radius:999px; font-size:.86rem; cursor:pointer;}
+  .tabs button.active{background:var(--surface); color:var(--fg); font-weight:700; box-shadow:0 1px 2px rgba(0,0,0,.1);}
+
+  .field{display:flex; flex-direction:column; gap:6px;}
+  .field label{font-size:.8rem; color:var(--fg-dim);}
+  .field input, .field select{
+    background:var(--surface-2); border:1px solid var(--border); border-radius:10px; padding:11px 12px; font-size:.94rem; color:var(--fg); font-family:inherit; width:100%;
+  }
+  .check-opts{display:flex; flex-direction:column; gap:8px;}
+  .check-opts label{
+    display:flex; align-items:flex-start; gap:8px; border:1px solid var(--border); border-radius:12px; padding:10px 12px; font-size:.84rem; cursor:pointer;
+  }
+  .check-opts input{margin-top:3px; accent-color:var(--accent);}
+
+  .role-pick{display:grid; grid-template-columns:1fr 1fr; gap:8px;}
+  .role-pick .opt{display:flex; flex-direction:column; gap:4px; border:1px solid var(--border); border-radius:12px; padding:10px; cursor:pointer; font-size:.8rem; color:var(--fg-dim);}
+  .role-pick input{accent-color:var(--accent);}
+  .role-pick .opt.picked{border-color:var(--accent); color:var(--fg); background:color-mix(in srgb, var(--accent) 8%, transparent);}
+  .role-pick b{color:var(--fg); font-size:.88rem;}
+
+  .divider{display:flex; align-items:center; gap:10px; color:var(--fg-dim); font-size:.78rem;}
+  .divider::before, .divider::after{content:""; flex:1; height:1px; background:var(--border);}
+  .error-msg{color:var(--bad); font-size:.82rem; min-height:1.1em;}
+  .hint{font-size:.76rem; color:var(--fg-dim);}
+
+  .app-shell{display:none;}
+  .app-shell.active{display:block;}
+  .site-shell.hidden-when-app{display:none;}
+
+  .topnav{
+    position:sticky; top:0; z-index:20; display:flex; align-items:center; justify-content:space-between; gap:10px;
+    padding-block:14px; background:color-mix(in srgb, var(--bg) 90%, transparent); -webkit-backdrop-filter:blur(10px); backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--border); flex-wrap:wrap;
+  }
+  .topnav-right{display:flex; align-items:center; gap:10px; flex-wrap:wrap;}
+  .user-chip{display:flex; align-items:center; gap:10px;}
+  .user-chip .info{display:flex; flex-direction:column; line-height:1.25; min-width:0;}
+  .user-chip b{font-size:.86rem; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:28vw; display:flex; align-items:center; gap:4px;}
+
+  .role-badge{font-size:.64rem; padding:2px 9px; border-radius:999px; font-weight:700; display:inline-block; width:fit-content;}
+  .role-badge.customer{background:var(--blue-bg); color:var(--blue);}
+  .role-badge.vendor{background:var(--good-bg); color:var(--good);}
+  .role-badge.operator{background:color-mix(in srgb, var(--accent) 20%, var(--surface-2)); color:var(--accent);}
+  .role-badge.admin{background:var(--bad-bg); color:var(--bad);}
+
+  .dash-tabs{display:flex; gap:6px; overflow-x:auto; padding-block:14px; border-bottom:1px solid var(--border); -webkit-overflow-scrolling:touch;}
+  .dash-tabs button{white-space:nowrap; border:1px solid var(--border); background:var(--surface); padding:9px 16px; border-radius:999px; font-size:.84rem; cursor:pointer; color:var(--fg-dim); flex:none;}
+  .dash-tabs button.active{background:var(--accent); color:var(--accent-fg); border-color:transparent; font-weight:700;}
+
+  .panel{padding-block:20px; display:none;}
+  .panel.active{display:block;}
+  .panel-head{display:flex; justify-content:space-between; align-items:center; gap:10px; margin-bottom:14px; flex-wrap:wrap;}
+  .panel-head h2{font-size:1.2rem;}
+
+  .form-card{background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:20px; display:flex; flex-direction:column; gap:14px; max-width:560px;}
+  textarea{background:var(--surface-2); border:1px solid var(--border); border-radius:10px; padding:11px 12px; font-size:.92rem; color:var(--fg); font-family:inherit; resize:vertical; min-height:90px; width:100%;}
+
+  table{width:100%; border-collapse:collapse; font-size:.84rem; min-width:420px;}
+  thead th{text-align:right; color:var(--fg-dim); font-weight:600; font-size:.74rem; padding-bottom:10px; border-bottom:1px solid var(--border); white-space:nowrap;}
+  tbody td{padding:11px 4px; border-bottom:1px solid var(--border); vertical-align:middle;}
+  tbody tr:last-child td{border-bottom:none;}
+  .table-wrap{overflow-x:auto; border:1px solid var(--border); border-radius:var(--radius); background:var(--surface); padding:4px 14px;}
+  select.role-select{background:var(--surface-2); border:1px solid var(--border); border-radius:8px; padding:6px 8px; font-size:.78rem; color:var(--fg); font-family:inherit;}
+
+  .empty{border:1px dashed var(--border); border-radius:var(--radius); padding:26px 16px; text-align:center; color:var(--fg-dim); font-size:.86rem;}
+  .toast{
+    position:fixed; bottom:max(20px, env(safe-area-inset-bottom,0px)); left:50%; transform:translateX(-50%) translateY(140%);
+    background:var(--fg); color:var(--bg); padding:12px 20px; border-radius:999px; font-size:.85rem; z-index:80; transition:transform .25s ease; max-width:88vw; text-align:center;
+  }
+  .toast.show{transform:translateX(-50%) translateY(0);}
+
+  .fab-wheel{
+    position:fixed; left:max(16px, env(safe-area-inset-left,0px)); bottom:max(20px, env(safe-area-inset-bottom,0px)); z-index:40;
+    width:56px; height:56px; border-radius:50%; border:none; cursor:pointer;
+    background:conic-gradient(from 0deg, var(--accent) 0 14.28%, var(--gold) 0 28.56%, var(--accent) 0 42.84%, var(--gold) 0 57.12%, var(--accent) 0 71.4%, var(--gold) 0 85.68%, var(--accent) 0 100%);
+    box-shadow:0 6px 18px rgba(0,0,0,.22), inset 0 0 0 3px var(--surface);
+    display:flex; align-items:center; justify-content:center; font-size:1.4rem; animation:fabPulse 2.6s ease-in-out infinite;
+  }
+  @keyframes fabPulse{0%,100%{transform:scale(1);} 50%{transform:scale(1.06);}}
+
+  .shop-grid{display:grid; grid-template-columns:1fr 1fr; gap:10px;}
+  .shop-card{border:1px solid var(--border); border-radius:14px; padding:14px; text-align:center; display:flex; flex-direction:column; align-items:center; gap:8px; background:var(--surface-2);}
+  .shop-card .coin-ic-lg{width:40px; height:40px; border-radius:50%; background:radial-gradient(circle at 35% 30%, #fff6d8, var(--gold) 55%, #9c7414 100%); box-shadow:inset 0 0 0 2px rgba(0,0,0,.12);}
+  .shop-card b{font-size:1.02rem;}
+  .shop-card span{font-size:.76rem; color:var(--fg-dim);}
+  .telegram-note{border:1px dashed var(--blue); background:var(--blue-bg); color:var(--blue); border-radius:12px; padding:12px; font-size:.86rem; text-align:center; line-height:1.9;}
+  .telegram-note b{font-family:var(--mono); direction:ltr; display:inline-block;}
+
+  .wheel-stage{display:flex; flex-direction:column; align-items:center; gap:14px;}
+  .wheel-outer{position:relative; width:250px; height:250px; max-width:78vw; max-height:78vw;}
+  .wheel-pointer{position:absolute; top:-6px; left:50%; transform:translateX(-50%); width:0; height:0; border-left:14px solid transparent; border-right:14px solid transparent; border-top:22px solid var(--accent); z-index:5; filter:drop-shadow(0 2px 2px rgba(0,0,0,.3));}
+  .wheel-disc{width:100%; height:100%; border-radius:50%; position:relative; overflow:hidden; border:6px solid var(--surface); box-shadow:0 0 0 2px var(--border), 0 10px 30px rgba(0,0,0,.2); transition:transform 4s cubic-bezier(.17,.67,.17,1); will-change:transform;}
+  .wheel-slice-label{position:absolute; top:50%; left:50%; width:50%; height:2px; transform-origin:0 50%; display:flex; align-items:center; justify-content:flex-end; font-size:.62rem; font-weight:700; color:#fff; text-shadow:0 1px 2px rgba(0,0,0,.5); padding-right:10px; white-space:nowrap;}
+  .wheel-hub{position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:42px; height:42px; border-radius:50%; background:var(--surface); border:3px solid var(--accent); z-index:4; display:flex; align-items:center; justify-content:center; font-size:1.05rem;}
+  .wheel-result{text-align:center; font-size:.98rem; font-weight:700; min-height:1.4em;}
+
+  .chat-box{display:flex; flex-direction:column; gap:10px; border:1px solid var(--border); border-radius:var(--radius); background:var(--surface); padding:14px; max-width:720px;}
+  .chat-messages{display:flex; flex-direction:column; gap:10px; max-height:420px; overflow-y:auto; padding-left:2px;}
+  .chat-msg{display:flex; gap:10px; align-items:flex-start;}
+  .chat-msg .bubble{background:var(--surface-2); border-radius:14px; padding:8px 12px; font-size:.85rem; min-width:0; overflow-wrap:break-word; flex:1;}
+  .chat-msg .bubble .who{font-size:.74rem; font-weight:700; margin-bottom:2px; display:flex; gap:6px; align-items:center;}
+  .chat-msg .bubble .when{font-size:.66rem; color:var(--fg-dim); margin-right:6px;}
+  .chat-input-row{display:flex; gap:8px; align-items:center; flex-wrap:wrap;}
+  .chat-input-row input{flex:1; min-width:140px;}
+  .emoji-row{display:flex; gap:6px; flex-wrap:wrap;}
+  .emoji-row button{border:1px solid var(--border); background:var(--surface-2); border-radius:10px; font-size:1.05rem; padding:4px 8px; cursor:pointer;}
+
+  .ticket-card{border:1px solid var(--border); border-radius:14px; padding:14px; background:var(--surface); display:flex; flex-direction:column; gap:8px;}
+  .ticket-card .reply-box{border-top:1px dashed var(--border); padding-top:8px; margin-top:4px;}
+
+  .avatar{width:34px; height:34px; border-radius:50%; flex:none; display:flex; align-items:center; justify-content:center; font-size:.85rem; font-weight:700; color:#fff;}
+
+  .ann-card{border:1px solid var(--border); border-radius:var(--radius); background:var(--surface); overflow:hidden; display:flex; flex-direction:column; gap:8px;}
+  .ann-card img{width:100%; display:block; max-height:260px; object-fit:cover;}
+  .ann-card .pad{padding:12px 14px 16px;}
+
+  .room-card{border:1px solid var(--border); border-radius:var(--radius); background:var(--surface); padding:20px; max-width:420px; text-align:center; display:flex; flex-direction:column; gap:10px;}
+  .room-code{font-family:var(--mono); font-size:1.8rem; font-weight:800; letter-spacing:.08em; color:var(--accent);}
+
+  .lock-note{border:1px dashed var(--border); border-radius:var(--radius); padding:18px; text-align:center; color:var(--fg-dim); font-size:.88rem;}
+
+  @media (prefers-reduced-motion: reduce){ *{transition:none!important; animation:none!important;} .wheel-disc{transition:none!important;} }
+</style>
+</head>
+<body>
+
+<div class="glow"></div>
+
+<!-- Firebase connection banner -->
+<div class="top-banner" id="fbStatusBanner" style="display:none; background:linear-gradient(90deg,#c0442c,#e5755a 60%,#c0442c); color:#fff;"></div>
+
+<!-- ============ MARKETING SITE ============ -->
+<div id="siteShell" class="site-shell">
+  <div class="wrap">
+    <div class="top-banner gold" id="siteFreeAdBanner" hidden></div>
+    <header class="bar">
+      <div class="brand"><span class="mark">C</span>کالاف مارکت</div>
+      <div class="bar-actions">
+        <button class="coin-pill" id="btnCoinPillSite" type="button" title="فروشگاه سکه">
+          <span class="coin-ic">﷼</span><span id="coinCountSite">۰</span><span class="plus">+</span>
+        </button>
+        <button class="btn ghost" id="btnOpenLogin" type="button">ورود</button>
+        <button class="btn primary" id="btnOpenRegister" type="button">ثبت‌نام رایگان</button>
+      </div>
+    </header>
+
+    <div class="top-banner" style="margin-top:14px;">
+      🎉 هرکس از آقای زیزو بالای <b>یک میلیون تومان</b> خرید کند، تمام قابلیت‌های ویژه‌ی سایت را رایگان می‌گیرد!
+    </div>
+
+    <section class="hero">
+      <span class="eyebrow"><span class="dot"></span><span id="heroStat">در حال اتصال…</span></span>
+      <h1>خرید و فروش امن <em>اکانت کالاف دیوتی موبایل</em></h1>
+      <p class="lead">کالاف مارکت جایی‌ست که فروشنده‌های تایید‌شده اکانت کالاف دیوتی موبایل می‌فروشن و مشتری‌ها با خیال راحت خرید می‌کنن.</p>
+      <div class="hero-ctas">
+        <button class="btn primary" id="btnHeroStart" type="button">شروع کن</button>
+        <button class="btn ghost" id="btnHeroJobs" type="button">آگهی‌های اکانت رو ببین</button>
+      </div>
+      <div class="stat-row">
+        <div class="stat"><b id="statJobs">۰</b><span>آگهی فعال</span></div>
+        <div class="stat"><b id="statUsers">۰</b><span>عضو کالاف مارکت</span></div>
+        <div class="stat"><b>تایید لحظه‌ای</b><span>تایید فروشنده توسط اوپراتور</span></div>
+      </div>
+    </section>
+
+    <section id="jobsPreview">
+      <div class="section-head"><h2>تازه‌ترین آگهی‌های اکانت</h2><p>برای خرید وارد حساب شو</p></div>
+      <div id="jobsPreviewGrid" class="grid-cards"></div>
+    </section>
+
+    <section id="vendorsPreview">
+      <div class="section-head"><h2>فروشندگان تایید‌شده (تیک‌آبی)</h2><p>فقط این فروشنده‌ها می‌تونن آگهی بزارن</p></div>
+      <div id="vendorsPreviewGrid" class="grid-cards"></div>
+    </section>
+
+    <footer>
+      <span>© کالاف مارکت — یک دموی طراحی</span>
+      <span>خرید و فروش امن اکانت کالاف دیوتی موبایل</span>
+    </footer>
+  </div>
+</div>
+
+<!-- ============ APP SHELL ============ -->
+<div id="appShell" class="app-shell">
+  <div class="wrap">
+    <div class="top-banner gold" id="appFreeAdBanner" hidden></div>
+    <nav class="topnav">
+      <div class="brand"><span class="mark">C</span>کالاف مارکت</div>
+      <div class="topnav-right">
+        <button class="coin-pill" id="btnCoinPillApp" type="button" title="فروشگاه سکه">
+          <span class="coin-ic">﷼</span><span id="coinCountApp">۰</span><span class="plus">+</span>
+        </button>
+        <div class="user-chip">
+          <div class="avatar" id="navAvatar">?</div>
+          <div class="info">
+            <b id="navName">—</b>
+            <span class="role-badge" id="navRoleBadge">—</span>
+          </div>
+          <button class="btn sm ghost" id="btnLogout" type="button">خروج</button>
+        </div>
+      </div>
+    </nav>
+
+    <div class="dash-tabs" id="dashTabs"></div>
+
+    <div class="panel" id="panel-browse">
+      <div class="panel-head"><h2>آگهی‌های اکانت</h2><p class="hint" id="browseCount"></p></div>
+      <div id="browseGrid" class="grid-cards"></div>
+    </div>
+
+    <div class="panel" id="panel-vendorStatus">
+      <div class="panel-head"><h2>وضعیت درخواست فروشندگی</h2></div>
+      <div id="vendorStatusWrap"></div>
+    </div>
+
+    <div class="panel" id="panel-post">
+      <div class="panel-head"><h2>ثبت آگهی اکانت</h2></div>
+      <div id="postGateWrap"></div>
+      <form class="form-card" id="jobForm" hidden>
+        <div class="field">
+          <label for="jType">نوع اکانت</label>
+          <select id="jType">
+            <option value="هست">هست</option>
+            <option value="سیف">سیف</option>
+            <option value="نیم‌سیف">نیم‌سیف</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="jPhoto">عکس اکانت</label>
+          <input id="jPhoto" type="file" accept="image/*" capture="environment">
+          <p class="hint">می‌تونی از گالری انتخاب کنی یا مستقیم عکس بگیری</p>
+        </div>
+        <div class="field">
+          <label for="jLevel">لول اکانت</label>
+          <input id="jLevel" type="number" min="1" required placeholder="مثلاً 150">
+        </div>
+        <div class="field">
+          <label for="jTier">تایر اکانت</label>
+          <input id="jTier" required placeholder="مثلاً Legendary">
+        </div>
+        <div class="field">
+          <label for="jPrice">قیمت اکانت (تومان)</label>
+          <input id="jPrice" required placeholder="مثلاً 500,000">
+        </div>
+        <div class="field">
+          <label for="jTelegram">آیدی فروشنده در تلگرام</label>
+          <input id="jTelegram" required placeholder="@username" dir="ltr">
+        </div>
+        <button class="btn primary" type="submit">ثبت آگهی</button>
+      </form>
+    </div>
+
+    <div class="panel" id="panel-myJobs">
+      <div class="panel-head"><h2>آگهی‌های ثبت‌شده من</h2></div>
+      <div id="myJobsWrap"></div>
+    </div>
+
+    <div class="panel" id="panel-announcements">
+      <div class="panel-head"><h2>اعلان‌های کالاف دیوتی</h2><p class="hint">فقط Raven خبر می‌زاره</p></div>
+      <div id="announceFormWrap" style="margin-bottom:18px;"></div>
+      <div id="announceListWrap"></div>
+    </div>
+
+    <div class="panel" id="panel-freeroom">
+      <div class="panel-head"><h2>روم‌های رایگان</h2><p class="hint">هر شب ساعت ۲۲:۰۰ تا ۲۳:۰۰</p></div>
+      <div id="freeRoomEditWrap" style="margin-bottom:14px;"></div>
+      <div id="freeRoomWrap"></div>
+    </div>
+
+    <div class="panel" id="panel-chat">
+      <div class="panel-head"><h2>چت جهانی</h2><p class="hint">پیام‌ها همون لحظه برای همه ارسال می‌شه</p></div>
+      <div class="chat-box">
+        <div class="chat-messages" id="chatMessages"></div>
+        <div class="emoji-row" id="emojiRow"></div>
+        <form class="chat-input-row" id="chatForm">
+          <input id="chatInput" placeholder="پیامت را بنویس…" maxlength="300" autocomplete="off">
+          <button class="btn primary sm" type="submit">ارسال</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="panel" id="panel-tickets">
+      <div class="panel-head"><h2>تیکت پشتیبانی</h2><p class="hint" id="ticketsHint"></p></div>
+      <div id="ticketsWrap"></div>
+    </div>
+
+    <div class="panel" id="panel-admin">
+      <div class="panel-head"><h2>درخواست‌های عضویت فروشندگی</h2><p class="hint">واقعاً به‌صورت لحظه‌ای برای Raven می‌رسه</p></div>
+      <div id="vendorRequestsWrap" style="margin-bottom:22px;"></div>
+
+      <div class="panel-head"><h2>مدیریت کاربران</h2></div>
+      <div class="table-wrap" style="margin-bottom:22px;">
+        <table>
+          <thead><tr><th>نام</th><th>نام‌کاربری</th><th>تلگرام</th><th>نقش</th><th>تیک آبی</th><th>سکه</th><th>تغییر نقش</th></tr></thead>
+          <tbody id="usersTbody"></tbody>
+        </table>
+      </div>
+
+      <div class="panel-head"><h2>اعطای سکه دستی</h2></div>
+      <form class="form-card" id="grantCoinForm" style="margin-bottom:22px;">
+        <div class="field"><label for="grantUsername">نام کاربری گیرنده</label><input id="grantUsername" required dir="ltr"></div>
+        <div class="field"><label for="grantAmount">تعداد سکه</label><input id="grantAmount" type="number" min="1" required></div>
+        <button class="btn gold" type="submit">اعطای سکه</button>
+      </form>
+
+      <div class="panel-head"><h2>همه‌ی آگهی‌ها</h2></div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>نوع</th><th>فروشنده</th><th>قیمت</th><th></th></tr></thead>
+          <tbody id="allJobsTbody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ AUTH MODAL ============ -->
+<div class="modal-backdrop" id="authBackdrop" hidden>
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="authTitle">
+    <div class="modal-head">
+      <h2 id="authTitle">ورود به کالاف مارکت</h2>
+      <button class="icon-btn" id="btnCloseAuth" type="button" aria-label="بستن">✕</button>
+    </div>
+
+    <div class="tabs" id="authTabs">
+      <button type="button" data-tab="login">ورود</button>
+      <button type="button" data-tab="register">ثبت‌نام</button>
+    </div>
+
+    <form id="loginForm">
+      <div class="field" style="margin-bottom:12px;"><label for="liUser">نام کاربری یا ایمیل</label><input id="liUser" required autocomplete="username"></div>
+      <div class="field" style="margin-bottom:6px;"><label for="liPass">رمز عبور</label><input id="liPass" type="password" required autocomplete="current-password"></div>
+      <p class="error-msg" id="loginError"></p>
+      <button class="btn primary" type="submit" style="width:100%;">ورود</button>
+      <p class="hint" style="margin-top:14px; text-align:center;">حساب نداری؟ <a href="#" id="linkToRegister" style="color:var(--accent); text-decoration:none;">ثبت‌نام کن</a></p>
+    </form>
+
+    <form id="registerForm" hidden>
+      <div class="field" style="margin-bottom:12px;"><label for="rName">نام خود را وارد کنید</label><input id="rName" required autocomplete="name"></div>
+      <div class="field" style="margin-bottom:12px;"><label for="rAge">سن خود را وارد کنید</label><input id="rAge" type="number" min="12" max="100" required></div>
+      <div class="field" style="margin-bottom:12px;"><label for="rEmail">ایمیل خود را وارد کنید</label><input id="rEmail" type="email" required autocomplete="email" dir="ltr"></div>
+      <div class="field" style="margin-bottom:12px;"><label for="rPass">رمز خود را وارد کنید</label><input id="rPass" type="password" required minlength="6" autocomplete="new-password"></div>
+      <div class="field" style="margin-bottom:12px;"><label for="rUsername">نام کاربری را وارد کنید</label><input id="rUsername" required autocomplete="username" dir="ltr"></div>
+      <div class="field" style="margin-bottom:14px;"><label for="rTelegram">آیدی تلگرام خود را وارد کنید</label><input id="rTelegram" required placeholder="@username" dir="ltr"></div>
+      <div class="field" style="margin-bottom:6px;">
+        <label>ورود به عنوان مشتری کالاف یا فروشنده کالاف؟</label>
+        <div class="role-pick" id="rolePick">
+          <label class="opt picked"><input type="radio" name="rRole" value="customer" checked><b>مشتری کالاف</b><span>دنبال خرید اکانتم</span></label>
+          <label class="opt"><input type="radio" name="rRole" value="vendor"><b>فروشنده کالاف</b><span>نیاز به تایید اوپراتور دارد</span></label>
+        </div>
+      </div>
+      <div id="vendorOffersField" hidden style="margin-bottom:6px;">
+        <label class="hint" style="display:block;margin-bottom:8px;">چه خدماتی ارائه می‌دی؟ (حداقل یکی)</label>
+        <div class="check-opts">
+          <label><input type="checkbox" name="rOffer" value="فروش اکانت سیف و نیم‌سیف"> فروش اکانت سیف و نیم‌سیف</label>
+          <label><input type="checkbox" name="rOffer" value="فروش اکانت چنج"> فروش اکانت چنج</label>
+          <label><input type="checkbox" name="rOffer" value="فروش در همه نقاط اکانت‌های کالاف دیوتی"> فروش در همه نقاط اکانت‌های کالاف دیوتی</label>
+        </div>
+      </div>
+      <p class="error-msg" id="registerError"></p>
+      <button class="btn primary" type="submit" style="width:100%; margin-top:8px;">تأیید</button>
+    </form>
+  </div>
+</div>
+
+<div class="modal-backdrop" id="shopBackdrop" hidden>
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="shopTitle">
+    <div class="modal-head"><h2 id="shopTitle">فروشگاه سکه</h2><button class="icon-btn" id="btnCloseShop" type="button" aria-label="بستن">✕</button></div>
+    <p class="hint" id="shopBalanceLine"></p>
+    <div class="shop-grid" id="shopGrid"></div>
+    <div class="telegram-note" id="shopTelegramNote" hidden>برای خرید سکه به این آیدی در تلگرام مراجعه کنید و خرید کنید:<br><b>@Real_Raven1</b></div>
+  </div>
+</div>
+
+<div class="modal-backdrop" id="wheelBackdrop" hidden>
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="wheelTitle">
+    <div class="modal-head"><h2 id="wheelTitle">گردونه شانس</h2><button class="icon-btn" id="btnCloseWheel" type="button" aria-label="بستن">✕</button></div>
+    <div class="wheel-stage">
+      <p class="hint" id="wheelCostLine"></p>
+      <div class="wheel-outer"><div class="wheel-pointer"></div><div class="wheel-disc" id="wheelDisc"></div><div class="wheel-hub">🎯</div></div>
+      <div class="wheel-result" id="wheelResult"></div>
+      <button class="btn primary" id="btnSpin" type="button" style="width:100%;">چرخوندن گردونه</button>
+    </div>
+  </div>
+</div>
+
+<button class="fab-wheel" id="fabWheel" type="button" title="گردونه شانس" aria-label="گردونه شانس" hidden>🎡</button>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script type="module">
+/* =====================================================================
+   FIREBASE CONFIG — این بخش رو با مقادیر پروژه‌ی Firebase خودت پر کن.
+   از Firebase Console -> Project settings -> SDK setup and configuration
+   این مقادیر رو کپی کن.
+   ===================================================================== */
+const FIREBASE_CONFIG = {
+  apiKey: "AIzaSyDdkvPgjywqtcUk6OzJ2xd_j_gKaL8yEbA",
+  authDomain: "kodmarket-54536.firebaseapp.com",
+  projectId: "kodmarket-54536",
+  storageBucket: "kodmarket-54536.firebasestorage.app",
+  messagingSenderId: "760823103388",
+  appId: "1:760823103388:web:4887316e72938399a5d259"
+};
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import {
+  getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword,
+  onAuthStateChanged, signOut
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import {
+  getFirestore, doc, setDoc, getDoc, updateDoc, onSnapshot, collection,
+  addDoc, query, where, orderBy, limit, serverTimestamp, getDocs
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const RESERVED_OPERATOR_USERNAME = "raven";
+const TELEGRAM_CONTACT = "@Real_Raven1";
+const COIN_PACKAGES = [
+  { coins:80, price:80 }, { coins:160, price:160 }, { coins:240, price:210 }, { coins:360, price:340 }
+];
+const SPIN_COSTS = [10, 30, 50, 70, 100, 170, 270, 360];
+const WHEEL_PRIZES = [
+  { type:"ad_day",  label:"۱ روز تبلیغ رایگان" },
+  { type:"ad_hour", label:"۱ ساعت تبلیغ" },
+  { type:"none",    label:"پوچ" },
+  { type:"coins",   amount:10, label:"۱۰ سکه" },
+  { type:"none",    label:"پوچ" },
+  { type:"premium", label:"پک پریمیوم" },
+  { type:"emoji",   label:"ایموجی اختصاصی" }
+];
+const WHEEL_COLORS = ["#d9643a","#c99a2e","#3897f0","#3f7d4f","#8a5bb0","#c0442c","#2f7a74"];
+const EXCLUSIVE_EMOJIS = ["👑","💎","🔥","🚀","🥇","⚡"];
+const BASIC_EMOJIS = ["🙂","👍","😂","❤️","🎉"];
+const VERIFIED_SVG = '<svg viewBox="0 0 24 24" fill="none"><path d="M9 12.5l2 2 4.5-5" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+
+let app, auth, db;
+let firebaseReady = false;
+try{
+  if(!String(FIREBASE_CONFIG.apiKey).includes("PASTE_YOUR")){
+    app = initializeApp(FIREBASE_CONFIG);
+    auth = getAuth(app);
+    db = getFirestore(app);
+    firebaseReady = true;
+  }
+}catch(e){ console.error("Firebase init failed", e); }
+
+function showFbBanner(msg){
+  const el = document.getElementById("fbStatusBanner");
+  el.textContent = msg;
+  el.style.display = "flex";
+}
+if(!firebaseReady){
+  showFbBanner("⚠️ هنوز تنظیمات Firebase وارد نشده — این سایت فعلاً آفلاینه. مقادیر FIREBASE_CONFIG رو توی فایل پر کن.");
+}
+
+function toast(msg){
+  const el = document.getElementById("toast");
+  el.textContent = msg;
+  el.classList.add("show");
+  clearTimeout(window.__toastTimer);
+  window.__toastTimer = setTimeout(()=>el.classList.remove("show"), 2600);
+}
+function toFa(n){
+  const d = ["۰","۱","۲","۳","۴","۵","۶","۷","۸","۹"];
+  return String(n).replace(/[0-9]/g, x=>d[x]);
+}
+function escapeHtml(s){
+  return String(s==null?"":s).replace(/[&<>"']/g, c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+}
+function truncate(s,n){ s=String(s||""); return s.length>n ? s.slice(0,n)+"…" : s; }
+function relTime(ts){
+  if(!ts) return "";
+  const diff = Math.max(0, Date.now()-ts);
+  const min = Math.floor(diff/60000);
+  if(min<1) return "همین الان";
+  if(min<60) return toFa(min)+" دقیقه پیش";
+  const hr = Math.floor(min/60);
+  if(hr<24) return toFa(hr)+" ساعت پیش";
+  return toFa(Math.floor(hr/24))+" روز پیش";
+}
+function verifiedBadgeHtml(user){
+  return user && user.verified ? '<span class="verified-badge" title="تایید‌شده">'+VERIFIED_SVG+'</span>' : "";
+}
+function roleLabel(role){
+  return { customer:"مشتری کالاف", vendor:"فروشنده کالاف", operator:"اوپراتور", admin:"مدیر" }[role] || role;
+}
+
+/* ---------- image compression helper (keeps Firestore docs small) ---------- */
+function compressImageFile(file, maxDim, quality){
+  return new Promise((resolve, reject)=>{
+    if(!file){ resolve(null); return; }
+    const reader = new FileReader();
+    reader.onerror = ()=>reject(reader.error);
+    reader.onload = ()=>{
+      const img = new Image();
+      img.onerror = ()=>reject(new Error("bad image"));
+      img.onload = ()=>{
+        let w = img.width, h = img.height;
+        const scale = Math.min(1, maxDim/Math.max(w,h));
+        w = Math.round(w*scale); h = Math.round(h*scale);
+        const canvas = document.createElement("canvas");
+        canvas.width = w; canvas.height = h;
+        canvas.getContext("2d").drawImage(img, 0, 0, w, h);
+        resolve(canvas.toDataURL("image/jpeg", quality || 0.7));
+      };
+      img.src = reader.result;
+    };
+    reader.readAsDataURL(file);
+  });
+}
+
+/* ---------- state ---------- */
+let currentUserDoc = null;
+let currentUid = null;
+let unsubscribers = [];
+function clearSubs(){ unsubscribers.forEach(u=>{ try{u();}catch(e){} }); unsubscribers = []; }
+
+let usersCache = [];
+let jobsCache = [];
+let chatCache = [];
+let ticketsCache = [];
+let announcementsCache = [];
+let freeRoomCache = null;
+
+function findUserByUid(uid){ return usersCache.find(u=>u.uid===uid) || null; }
+function findUserByUsername(username){
+  const needle = String(username||"").toLowerCase();
+  return usersCache.find(u=>(u.username||"").toLowerCase()===needle) || null;
+}
+
+/* ---------- auth modal ---------- */
+const authBackdrop = document.getElementById("authBackdrop");
+const loginForm = document.getElementById("loginForm");
+const registerForm = document.getElementById("registerForm");
+const authTabs = document.getElementById("authTabs");
+
+function openAuth(tab){ authBackdrop.hidden = false; setAuthTab(tab||"login"); }
+function closeAuth(){
+  authBackdrop.hidden = true;
+  document.getElementById("loginError").textContent = "";
+  document.getElementById("registerError").textContent = "";
+  loginForm.reset(); registerForm.reset();
+  resetRolePickStyles();
+}
+authBackdrop.addEventListener("click", e=>{ if(e.target===authBackdrop) closeAuth(); });
+document.getElementById("btnCloseAuth").addEventListener("click", closeAuth);
+document.getElementById("btnOpenLogin").addEventListener("click", ()=>openAuth("login"));
+document.getElementById("btnOpenRegister").addEventListener("click", ()=>openAuth("register"));
+document.getElementById("btnHeroStart").addEventListener("click", ()=>openAuth("register"));
+document.getElementById("btnHeroJobs").addEventListener("click", ()=>{
+  document.getElementById("jobsPreview")?.scrollIntoView({behavior:"smooth"});
+});
+document.getElementById("linkToRegister").addEventListener("click", e=>{ e.preventDefault(); setAuthTab("register"); });
+
+function setAuthTab(tab){
+  authTabs.querySelectorAll("button").forEach(b=>b.classList.toggle("active", b.dataset.tab===tab));
+  document.getElementById("authTitle").textContent = tab==="login" ? "ورود به کالاف مارکت" : "ثبت‌نام در کالاف مارکت";
+  loginForm.hidden = tab!=="login";
+  registerForm.hidden = tab!=="register";
+}
+authTabs.querySelectorAll("button").forEach(b=>b.addEventListener("click", ()=>setAuthTab(b.dataset.tab)));
+setAuthTab("login");
+
+function resetRolePickStyles(){
+  document.querySelectorAll("#rolePick .opt").forEach(opt=>{
+    opt.classList.toggle("picked", opt.querySelector("input").checked);
+  });
+  const vendorPicked = document.querySelector('#rolePick input[value="vendor"]').checked;
+  document.getElementById("vendorOffersField").hidden = !vendorPicked;
+}
+document.querySelectorAll('#rolePick input[name="rRole"]').forEach(i=>i.addEventListener("change", resetRolePickStyles));
+
+/* ---------- login / register (Firebase Auth) ---------- */
+loginForm.addEventListener("submit", async (e)=>{
+  e.preventDefault();
+  if(!firebaseReady){ toast("Firebase هنوز وصل نشده"); return; }
+  const idf = document.getElementById("liUser").value.trim();
+  const pass = document.getElementById("liPass").value;
+  const errEl = document.getElementById("loginError");
+  if(!idf || !pass){ errEl.textContent = "همه فیلدها را پر کن."; return; }
+  try{
+    let email = idf;
+    if(!idf.includes("@")){
+      const existing = findUserByUsername(idf);
+      if(!existing){ errEl.textContent = "کاربری با این نام‌کاربری پیدا نشد."; return; }
+      email = existing.email;
+    }
+    await signInWithEmailAndPassword(auth, email, pass);
+    errEl.textContent = "";
+    closeAuth();
+  }catch(err){
+    errEl.textContent = "ورود ناموفق — ایمیل/نام‌کاربری یا رمز اشتباه است.";
+  }
+});
+
+registerForm.addEventListener("submit", async (e)=>{
+  e.preventDefault();
+  if(!firebaseReady){ toast("Firebase هنوز وصل نشده"); return; }
+  const name = document.getElementById("rName").value.trim();
+  const age = Number(document.getElementById("rAge").value);
+  const email = document.getElementById("rEmail").value.trim();
+  const pass = document.getElementById("rPass").value;
+  const username = document.getElementById("rUsername").value.trim();
+  const telegramId = document.getElementById("rTelegram").value.trim();
+  const roleInput = document.querySelector('input[name="rRole"]:checked');
+  const errEl = document.getElementById("registerError");
+
+  if(!name || !email || !pass || !username || !age || !telegramId){ errEl.textContent = "همه فیلدها را پر کن."; return; }
+  if(pass.length < 6){ errEl.textContent = "رمز عبور باید حداقل ۶ کاراکتر باشد."; return; }
+  if(findUserByUsername(username)){ errEl.textContent = "این نام کاربری قبلاً گرفته شده است."; return; }
+
+  let offers = [];
+  if(roleInput.value === "vendor"){
+    offers = Array.from(document.querySelectorAll('input[name="rOffer"]:checked')).map(i=>i.value);
+    if(offers.length === 0){ errEl.textContent = "حداقل یک گزینه از خدماتت رو انتخاب کن."; return; }
+  }
+
+  try{
+    const cred = await createUserWithEmailAndPassword(auth, email, pass);
+    const uid = cred.user.uid;
+    const profile = {
+      uid, name, age, email, username, usernameLower: username.toLowerCase(), telegramId,
+      role: "customer", // security rules force every self-signup to start as customer
+      coins: 0, verified: false, premium: false, emojiPack: false, spinCount: 0,
+      vendorRequest: roleInput.value === "vendor" ? { status:"pending", offers, requestedAt: Date.now() } : null,
+      createdAt: Date.now()
+    };
+    await setDoc(doc(db, "users", uid), profile);
+    errEl.textContent = "";
+    closeAuth();
+    if(username.toLowerCase() === RESERVED_OPERATOR_USERNAME){
+      toast("ثبت‌نام شد! برای فعال‌سازی نقش اوپراتور، نقش این حساب رو یک‌بار از Firebase Console به operator تغییر بده.");
+    } else if(roleInput.value === "vendor"){
+      toast("ثبت‌نام شد. درخواست فروشندگی‌ات برای اوپراتور ارسال شد.");
+    } else {
+      toast("ثبت‌نام با موفقیت انجام شد، خوش آمدی " + name);
+    }
+  }catch(err){
+    errEl.textContent = err && err.code === "auth/email-already-in-use" ? "این ایمیل قبلاً ثبت شده." : "خطا در ثبت‌نام: " + (err && err.message ? err.message : "نامشخص");
+  }
+});
+
+document.getElementById("btnLogout").addEventListener("click", ()=>{ if(firebaseReady) signOut(auth); });
+
+/* ---------- auth state + realtime listeners ---------- */
+if(firebaseReady){
+  onAuthStateChanged(auth, async (user)=>{
+    clearSubs();
+    if(!user){
+      currentUid = null; currentUserDoc = null;
+      enterSite();
+      return;
+    }
+    currentUid = user.uid;
+    subscribeAll();
+  });
+}
+
+function subscribeAll(){
+  unsubscribers.push(onSnapshot(collection(db,"users"), snap=>{
+    usersCache = snap.docs.map(d=>d.data());
+    currentUserDoc = findUserByUid(currentUid);
+    if(currentUserDoc){ enterApp(); } else { /* profile doc not yet created */ }
+    renderAll();
+  }, err=>console.error("users snapshot error", err)));
+
+  unsubscribers.push(onSnapshot(query(collection(db,"jobs"), orderBy("createdAt","desc")), snap=>{
+    jobsCache = snap.docs.map(d=>({ id:d.id, ...d.data() }));
+    renderAll();
+  }, err=>console.error("jobs snapshot error", err)));
+
+  unsubscribers.push(onSnapshot(query(collection(db,"chatMessages"), orderBy("createdAt","desc"), limit(100)), snap=>{
+    chatCache = snap.docs.map(d=>({ id:d.id, ...d.data() })).reverse();
+    renderChat();
+  }, err=>console.error("chat snapshot error", err)));
+
+  unsubscribers.push(onSnapshot(collection(db,"tickets"), snap=>{
+    ticketsCache = snap.docs.map(d=>({ id:d.id, ...d.data() }));
+    renderTickets();
+  }, err=>console.error("tickets snapshot error", err)));
+
+  unsubscribers.push(onSnapshot(query(collection(db,"announcements"), orderBy("createdAt","desc")), snap=>{
+    announcementsCache = snap.docs.map(d=>({ id:d.id, ...d.data() }));
+    renderAnnouncements();
+  }, err=>console.error("announcements snapshot error", err)));
+
+  unsubscribers.push(onSnapshot(doc(db,"freeRoom","current"), snap=>{
+    freeRoomCache = snap.exists() ? snap.data() : null;
+    renderFreeRoom();
+  }, err=>console.error("freeRoom snapshot error", err)));
+}
+
+/* ---------- shell switching ---------- */
+function enterSite(){
+  document.getElementById("siteShell").classList.remove("hidden-when-app");
+  document.getElementById("appShell").classList.remove("active");
+  document.getElementById("fabWheel").hidden = true;
+  renderMarketing();
+}
+function enterApp(){
+  document.getElementById("siteShell").classList.add("hidden-when-app");
+  document.getElementById("appShell").classList.add("active");
+  document.getElementById("fabWheel").hidden = false;
+}
+
+function renderAll(){
+  if(currentUserDoc){ renderApp(); } else { renderMarketing(); }
+  renderBanners();
+  updateCoinPills();
+}
+
+/* ---------- site-wide banner ---------- */
+function renderBanners(){
+  const active = freeAdBannerDoc && freeAdBannerDoc.expiresAt > Date.now();
+  // free-ad banner is stored on a dedicated doc fetched via users/announcements? kept simple: derive from announcementsCache? use separate state:
+}
+let freeAdBannerDoc = null;
+if(firebaseReady){
+  onSnapshot(doc(db,"siteBanner","current"), snap=>{
+    freeAdBannerDoc = snap.exists() ? snap.data() : null;
+    paintBanners();
+  }, err=>console.error("siteBanner snapshot error", err));
+}
+function paintBanners(){
+  const active = freeAdBannerDoc && freeAdBannerDoc.expiresAt > Date.now();
+  [document.getElementById("siteFreeAdBanner"), document.getElementById("appFreeAdBanner")].forEach(el=>{
+    if(!el) return;
+    if(active){
+      el.hidden = false;
+      el.innerHTML = "📣 <b>تبلیغ ویژه:</b> " + escapeHtml(freeAdBannerDoc.text) + " <span style=\"opacity:.7;\">— توسط " + escapeHtml(freeAdBannerDoc.by) + "</span>";
+    } else { el.hidden = true; el.innerHTML = ""; }
+  });
+}
+
+/* ---------- coin pills ---------- */
+function updateCoinPills(){
+  const count = currentUserDoc ? toFa(currentUserDoc.coins||0) : "۰";
+  const a = document.getElementById("coinCountSite"); if(a) a.textContent = count;
+  const b = document.getElementById("coinCountApp"); if(b) b.textContent = count;
+}
+
+/* ---------- shop ---------- */
+const shopBackdrop = document.getElementById("shopBackdrop");
+function openShop(){
+  const grid = document.getElementById("shopGrid");
+  const note = document.getElementById("shopTelegramNote");
+  const balanceLine = document.getElementById("shopBalanceLine");
+  grid.innerHTML = "";
+  if(!currentUserDoc){ balanceLine.textContent = "برای خرید سکه ابتدا وارد حساب شو."; note.hidden = true; shopBackdrop.hidden = false; return; }
+  balanceLine.textContent = "موجودی فعلی: " + toFa(currentUserDoc.coins||0) + " سکه";
+  note.hidden = currentUserDoc.role === "operator";
+  COIN_PACKAGES.forEach(pkg=>{
+    const card = document.createElement("div"); card.className = "shop-card";
+    card.innerHTML = '<div class="coin-ic-lg"></div><b>'+toFa(pkg.coins)+' سکه</b><span>'+toFa(pkg.price)+' تومان</span>';
+    const btn = document.createElement("button");
+    btn.className = "btn primary sm"; btn.type = "button";
+    btn.textContent = currentUserDoc.role === "operator" ? "دریافت رایگان" : "خرید";
+    btn.addEventListener("click", ()=>buyCoinPackage(pkg));
+    card.appendChild(btn); grid.appendChild(card);
+  });
+  shopBackdrop.hidden = false;
+}
+function closeShop(){ shopBackdrop.hidden = true; }
+async function buyCoinPackage(pkg){
+  if(!currentUserDoc) return;
+  if(currentUserDoc.role === "operator"){
+    await updateDoc(doc(db,"users",currentUid), { coins: (currentUserDoc.coins||0) + pkg.coins });
+    toast("سکه برای اوپراتور اضافه شد: " + toFa(pkg.coins));
+    openShop();
+  } else {
+    toast("برای خرید به آیدی تلگرام @Real_Raven1 مراجعه کن");
+    document.getElementById("shopTelegramNote").hidden = false;
+  }
+}
+document.getElementById("btnCoinPillSite").addEventListener("click", ()=>{ if(!currentUserDoc){ openAuth("login"); return; } openShop(); });
+document.getElementById("btnCoinPillApp").addEventListener("click", openShop);
+document.getElementById("btnCloseShop").addEventListener("click", closeShop);
+shopBackdrop.addEventListener("click", e=>{ if(e.target===shopBackdrop) closeShop(); });
+
+/* ---------- marketing (logged-out) ---------- */
+function renderMarketing(){
+  const openJobs = jobsCache.filter(j=>j.status==="open");
+  document.getElementById("statJobs").textContent = toFa(openJobs.length);
+  document.getElementById("statUsers").textContent = toFa(usersCache.length);
+  document.getElementById("heroStat").textContent = firebaseReady ? ("الان " + toFa(openJobs.length) + " آگهی فعال") : "آفلاین — Firebase وصل نیست";
+  const grid = document.getElementById("jobsPreviewGrid");
+  grid.innerHTML = "";
+  const recent = jobsCache.slice(0,6);
+  if(recent.length===0){ grid.innerHTML = '<div class="empty">هنوز آگهی‌ای ثبت نشده.</div>'; }
+  else recent.forEach(job=>grid.appendChild(jobCard(job,{showBuy:false})));
+
+  const vGrid = document.getElementById("vendorsPreviewGrid");
+  vGrid.innerHTML = "";
+  const approved = usersCache.filter(u=>u.role==="vendor");
+  if(approved.length===0){ vGrid.innerHTML = '<div class="empty">هنوز فروشنده‌ی تایید‌شده‌ای نداریم.</div>'; }
+  else approved.forEach(v=>{
+    const card = document.createElement("div"); card.className="card";
+    card.innerHTML = '<div style="display:flex;align-items:center;gap:8px;"><h3>'+escapeHtml(v.name)+'</h3>'+verifiedBadgeHtml(v)+'</div>' +
+      '<p class="desc">نام‌کاربری: <span dir="ltr">'+escapeHtml(v.username)+'</span></p>' +
+      '<span class="telegram-chip">'+escapeHtml(v.telegramId||"")+'</span>';
+    vGrid.appendChild(card);
+  });
+}
+
+function jobCard(job, opts){
+  opts = opts || {};
+  const card = document.createElement("div"); card.className = "card";
+  if(job.photo){ const img = document.createElement("img"); img.className="thumb"; img.src = job.photo; img.alt = "عکس اکانت"; card.appendChild(img); }
+  const seller = findUserByUid(job.sellerId);
+  const head = document.createElement("div");
+  head.style.cssText = "display:flex;justify-content:space-between;gap:8px;align-items:flex-start;";
+  head.innerHTML = '<h3>اکانت '+escapeHtml(job.accountType||"")+'</h3><span class="tag accent">لول '+toFa(job.level||"-")+'</span>';
+  const meta = document.createElement("p"); meta.className = "meta";
+  meta.innerHTML = '<span>👤 '+escapeHtml(seller?seller.name:"فروشنده حذف‌شده")+' '+verifiedBadgeHtml(seller)+'</span><span>🏷️ تایر '+escapeHtml(job.tier||"-")+'</span>';
+  const price = document.createElement("p"); price.className = "price-tag"; price.textContent = toFa(job.price||"") + " تومان";
+  const tg = document.createElement("span"); tg.className = "telegram-chip"; tg.textContent = job.telegramId || "";
+  card.appendChild(head); card.appendChild(meta); card.appendChild(price); card.appendChild(tg);
+  return card;
+}
+
+/* ---------- app (logged-in) ---------- */
+function tabsForUser(user){
+  const tabs = [];
+  if(user.role==="customer"){
+    tabs.push({id:"browse", label:"آگهی‌های اکانت"});
+    if(user.vendorRequest){ tabs.push({id:"vendorStatus", label:"وضعیت فروشندگی"}); }
+  } else if(user.role==="vendor"){
+    tabs.push({id:"browse", label:"آگهی‌های اکانت"});
+  } else if(user.role==="operator" || user.role==="admin"){
+    tabs.push({id:"admin", label:"مدیریت"});
+    tabs.push({id:"browse", label:"آگهی‌های اکانت"});
+  }
+  tabs.push({id:"post", label:"ثبت آگهی"});
+  tabs.push({id:"myJobs", label:"آگهی‌های من"});
+  tabs.push({id:"announcements", label:"اعلان‌ها"});
+  tabs.push({id:"freeroom", label:"روم رایگان"});
+  tabs.push({id:"chat", label:"چت جهانی"});
+  tabs.push({id:"tickets", label:"تیکت پشتیبانی"});
+  return tabs;
+}
+
+function renderApp(){
+  const user = currentUserDoc;
+  if(!user) return;
+  document.getElementById("navName").innerHTML = escapeHtml(user.name) + verifiedBadgeHtml(user);
+  const avatarEl = document.getElementById("navAvatar");
+  avatarEl.textContent = user.name.charAt(0) || "?";
+  avatarEl.style.background = "linear-gradient(135deg, var(--accent), var(--accent-2))";
+  avatarEl.style.color = "var(--accent-fg)";
+  const badge = document.getElementById("navRoleBadge");
+  badge.textContent = roleLabel(user.role);
+  badge.className = "role-badge " + user.role;
+
+  const tabs = tabsForUser(user);
+  const tabsEl = document.getElementById("dashTabs");
+  const prevActive = tabsEl.querySelector("button.active")?.dataset.panel;
+  tabsEl.innerHTML = "";
+  tabs.forEach((t,i)=>{
+    const btn = document.createElement("button");
+    btn.type="button"; btn.textContent = t.label; btn.dataset.panel = t.id;
+    if((prevActive && prevActive===t.id) || (!prevActive && i===0)) btn.classList.add("active");
+    btn.addEventListener("click", ()=>showPanel(t.id));
+    tabsEl.appendChild(btn);
+  });
+  const activeId = tabsEl.querySelector("button.active")?.dataset.panel || tabs[0].id;
+  showPanel(activeId);
+
+  renderBrowse();
+  renderMyJobs();
+  renderVendorStatus();
+  renderPostGate();
+  renderAnnouncements();
+  renderFreeRoom();
+  renderChat();
+  renderTickets();
+  if(user.role==="operator" || user.role==="admin") renderAdmin();
+}
+
+function showPanel(id){
+  document.querySelectorAll(".panel").forEach(p=>p.classList.remove("active"));
+  document.getElementById("panel-"+id)?.classList.add("active");
+  document.querySelectorAll("#dashTabs button").forEach(b=>b.classList.toggle("active", b.dataset.panel===id));
+}
+
+function renderBrowse(){
+  const grid = document.getElementById("browseGrid");
+  grid.innerHTML = "";
+  const openJobs = jobsCache.filter(j=>j.status==="open");
+  document.getElementById("browseCount").textContent = toFa(openJobs.length) + " آگهی باز";
+  if(openJobs.length===0){ grid.innerHTML = '<div class="empty">فعلاً آگهی‌ای وجود ندارد.</div>'; return; }
+  openJobs.forEach(job=>grid.appendChild(jobCard(job,{})));
+}
+
+function renderVendorStatus(){
+  const wrap = document.getElementById("vendorStatusWrap");
+  if(!wrap) return;
+  const user = currentUserDoc;
+  if(!user.vendorRequest){ wrap.innerHTML = ""; return; }
+  const vr = user.vendorRequest;
+  const statusTag = vr.status==="pending" ? '<span class="tag warn">در انتظار بررسی</span>'
+    : vr.status==="approved" ? '<span class="tag open">تایید شد</span>'
+    : '<span class="tag closed">رد شد</span>';
+  wrap.innerHTML = '<div class="card" style="max-width:480px;"><p>'+statusTag+'</p>' +
+    (vr.offers && vr.offers.length ? '<p class="desc">خدمات: '+vr.offers.map(escapeHtml).join('، ')+'</p>' : '') +
+    '<p class="hint">درخواست در '+relTime(vr.requestedAt)+' ثبت شده.</p></div>';
+}
+
+function renderPostGate(){
+  const gateWrap = document.getElementById("postGateWrap");
+  const form = document.getElementById("jobForm");
+  const user = currentUserDoc;
+  if(user && user.verified){
+    gateWrap.innerHTML = "";
+    form.hidden = false;
+    document.getElementById("jTelegram").value = document.getElementById("jTelegram").value || user.telegramId || "";
+  } else {
+    gateWrap.innerHTML = '<div class="lock-note">🔒 فقط کاربرای تیک‌آبی (تایید‌شده) می‌تونن آگهی ثبت کنن. برای گرفتن تیک‌آبی، اول باید فروشنده‌ی تایید‌شده باشی.</div>';
+    form.hidden = true;
+  }
+}
+
+document.getElementById("jobForm").addEventListener("submit", async (e)=>{
+  e.preventDefault();
+  const user = currentUserDoc;
+  if(!user || !user.verified) return;
+  const accountType = document.getElementById("jType").value;
+  const level = Number(document.getElementById("jLevel").value);
+  const tier = document.getElementById("jTier").value.trim();
+  const price = document.getElementById("jPrice").value.trim();
+  const telegramId = document.getElementById("jTelegram").value.trim();
+  const photoFile = document.getElementById("jPhoto").files[0];
+  if(!level || !tier || !price || !telegramId) return;
+  let photo = null;
+  try{ photo = await compressImageFile(photoFile, 800, 0.7); }catch(err){ console.error(err); }
+  try{
+    await addDoc(collection(db,"jobs"), {
+      sellerId: currentUid, accountType, level, tier, price, telegramId,
+      photo: photo || null, status:"open", createdAt: Date.now()
+    });
+    e.target.reset();
+    toast("آگهی ثبت شد");
+    showPanel("myJobs");
+  }catch(err){ toast("خطا در ثبت آگهی: " + (err.message||"")); }
+});
+
+function renderMyJobs(){
+  const wrap = document.getElementById("myJobsWrap");
+  const user = currentUserDoc;
+  const jobs = jobsCache.filter(j=>j.sellerId===currentUid);
+  if(jobs.length===0){ wrap.innerHTML = '<div class="empty">هنوز آگهی‌ای ثبت نکرده‌ای.</div>'; return; }
+  let html = '<div class="grid-cards">';
+  jobs.forEach(j=>{
+    html += '<div class="card">' +
+      (j.photo ? '<img class="thumb" src="'+j.photo+'">' : '') +
+      '<h3>اکانت '+escapeHtml(j.accountType||"")+' — لول '+toFa(j.level||"-")+'</h3>' +
+      '<p class="desc">تایر: '+escapeHtml(j.tier||"-")+'</p>' +
+      '<p class="price-tag">'+escapeHtml(j.price||"")+' تومان</p>' +
+      '<span class="tag '+(j.status==="open"?"open":"closed")+'">'+(j.status==="open"?"باز":"بسته")+'</span>' +
+      '<button class="btn sm ghost" data-toggle="'+j.id+'" type="button">'+(j.status==="open"?"بستن":"باز کردن")+'</button>' +
+      '</div>';
+  });
+  html += '</div>';
+  wrap.innerHTML = html;
+  wrap.querySelectorAll("[data-toggle]").forEach(btn=>{
+    btn.addEventListener("click", async ()=>{
+      const job = jobsCache.find(j=>j.id===btn.dataset.toggle);
+      if(!job) return;
+      await updateDoc(doc(db,"jobs",job.id), { status: job.status==="open"?"closed":"open" });
+    });
+  });
+}
+
+/* ---------- announcements (operator-only create) ---------- */
+function renderAnnouncements(){
+  const formWrap = document.getElementById("announceFormWrap");
+  const listWrap = document.getElementById("announceListWrap");
+  if(!formWrap || !listWrap) return;
+  const user = currentUserDoc;
+  if(user && user.role==="operator"){
+    formWrap.innerHTML = "";
+    const form = document.createElement("form");
+    form.className = "form-card";
+    form.innerHTML =
+      '<div class="field"><label>انتخاب عکس برای خبر</label><input id="annPhoto" type="file" accept="image/*" capture="environment"></div>' +
+      '<div class="field"><label>متن خبر</label><textarea id="annText" required placeholder="متن اعلان رو بنویس"></textarea></div>' +
+      '<div class="field"><label>تاریخ خبر</label><input id="annDate" type="date"></div>' +
+      '<button class="btn primary" type="submit">انتشار خبر</button>';
+    form.querySelector("#annDate").value = new Date().toISOString().slice(0,10);
+    form.addEventListener("submit", async (e)=>{
+      e.preventDefault();
+      const text = form.querySelector("#annText").value.trim();
+      const dateVal = form.querySelector("#annDate").value;
+      const file = form.querySelector("#annPhoto").files[0];
+      if(!text) return;
+      let photo = null;
+      try{ photo = await compressImageFile(file, 900, 0.72); }catch(err){ console.error(err); }
+      await addDoc(collection(db,"announcements"), { text, date:dateVal, photo: photo||null, by:user.name, createdAt: Date.now() });
+      form.reset();
+      form.querySelector("#annDate").value = new Date().toISOString().slice(0,10);
+      toast("خبر منتشر شد");
+    });
+    formWrap.appendChild(form);
+  } else {
+    formWrap.innerHTML = "";
+  }
+
+  listWrap.innerHTML = "";
+  if(announcementsCache.length===0){ listWrap.innerHTML = '<div class="empty">هنوز اعلانی منتشر نشده.</div>'; return; }
+  announcementsCache.forEach(a=>{
+    const card = document.createElement("div"); card.className = "ann-card"; card.style.marginBottom = "12px";
+    card.innerHTML = (a.photo ? '<img src="'+a.photo+'">' : '') +
+      '<div class="pad"><p>'+escapeHtml(a.text)+'</p><p class="hint">'+escapeHtml(a.date||"")+' — '+escapeHtml(a.by||"")+'</p></div>';
+    listWrap.appendChild(card);
+  });
+}
+
+/* ---------- free rooms (operator-only write) ---------- */
+function renderFreeRoom(){
+  const editWrap = document.getElementById("freeRoomEditWrap");
+  const wrap = document.getElementById("freeRoomWrap");
+  if(!editWrap || !wrap) return;
+  const user = currentUserDoc;
+  if(user && user.role==="operator"){
+    editWrap.innerHTML = "";
+    const form = document.createElement("form");
+    form.className = "form-card";
+    form.innerHTML =
+      '<div class="field"><label>کد روم امشب</label><input id="roomCodeInput" required placeholder="مثلاً 123-456" value="'+escapeHtml(freeRoomCache?freeRoomCache.code:"")+'"></div>' +
+      '<button class="btn primary" type="submit">ثبت کد روم</button>';
+    form.addEventListener("submit", async (e)=>{
+      e.preventDefault();
+      const code = form.querySelector("#roomCodeInput").value.trim();
+      if(!code) return;
+      await setDoc(doc(db,"freeRoom","current"), { code, by:user.name, updatedAt: Date.now() });
+      toast("کد روم ثبت شد");
+    });
+    editWrap.appendChild(form);
+  } else {
+    editWrap.innerHTML = "";
+  }
+
+  if(freeRoomCache && freeRoomCache.code){
+    wrap.innerHTML = '<div class="room-card"><p class="hint">کد روم امشب</p><div class="room-code">'+escapeHtml(freeRoomCache.code)+'</div>' +
+      '<p class="hint">هر شب ساعت ۲۲:۰۰ تا ۲۳:۰۰ فعاله — توسط '+escapeHtml(freeRoomCache.by||"Raven")+'</p></div>';
+  } else {
+    wrap.innerHTML = '<div class="empty">هنوز کد رومی برای امشب ثبت نشده.</div>';
+  }
+}
+
+/* ---------- admin ---------- */
+function renderAdmin(){
+  const user = currentUserDoc;
+  const isOperator = user.role === "operator";
+
+  const reqWrap = document.getElementById("vendorRequestsWrap");
+  const pending = usersCache.filter(u=>u.vendorRequest && u.vendorRequest.status==="pending");
+  if(pending.length===0){ reqWrap.innerHTML = '<div class="empty">درخواست فروشندگی در انتظاری وجود ندارد.</div>'; }
+  else {
+    reqWrap.innerHTML = "";
+    pending.forEach(u=>{
+      const card = document.createElement("div"); card.className="card"; card.style.marginBottom="10px";
+      card.innerHTML = '<h3>'+escapeHtml(u.name)+' <span class="hint" dir="ltr">('+escapeHtml(u.username)+')</span></h3>' +
+        '<p class="desc">خدمات: '+(u.vendorRequest.offers||[]).map(escapeHtml).join('، ')+'</p>' +
+        '<p class="hint" dir="ltr">'+escapeHtml(u.telegramId||"")+'</p>' +
+        '<div class="vreq-actions" style="display:flex;gap:8px;"></div>';
+      const actions = card.querySelector(".vreq-actions");
+      if(isOperator){
+        const approveBtn = document.createElement("button");
+        approveBtn.className="btn sm primary"; approveBtn.type="button"; approveBtn.textContent="تایید";
+        approveBtn.addEventListener("click", async ()=>{
+          await updateDoc(doc(db,"users",u.uid), { role:"vendor", vendorRequest: { ...u.vendorRequest, status:"approved" } });
+          toast(u.name + " به عنوان فروشنده تایید شد");
+        });
+        const rejectBtn = document.createElement("button");
+        rejectBtn.className="btn sm danger"; rejectBtn.type="button"; rejectBtn.textContent="رد کردن";
+        rejectBtn.addEventListener("click", async ()=>{
+          await updateDoc(doc(db,"users",u.uid), { vendorRequest: { ...u.vendorRequest, status:"rejected" } });
+          toast("درخواست " + u.name + " رد شد");
+        });
+        actions.appendChild(approveBtn); actions.appendChild(rejectBtn);
+      } else {
+        actions.innerHTML = '<span class="hint">فقط اوپراتور می‌تواند تایید کند</span>';
+      }
+      reqWrap.appendChild(card);
+    });
+  }
+
+  const tbody = document.getElementById("usersTbody");
+  tbody.innerHTML = "";
+  usersCache.forEach(u=>{
+    const tr = document.createElement("tr");
+    const tdName = document.createElement("td"); tdName.textContent = u.name;
+    const tdUser = document.createElement("td"); tdUser.textContent = u.username; tdUser.dir="ltr"; tdUser.style.textAlign="right";
+    const tdTg = document.createElement("td"); tdTg.textContent = u.telegramId||""; tdTg.dir="ltr"; tdTg.style.textAlign="right";
+    const tdRole = document.createElement("td");
+    const badge = document.createElement("span"); badge.className="role-badge "+u.role; badge.textContent = roleLabel(u.role);
+    tdRole.appendChild(badge);
+    const tdVerified = document.createElement("td");
+    if(u.role==="vendor"){
+      const vBtn = document.createElement("button");
+      vBtn.className = "btn sm " + (u.verified?"blue":"ghost"); vBtn.type="button";
+      vBtn.textContent = u.verified ? "تایید‌شده" : "دادن تیک آبی";
+      vBtn.disabled = !isOperator;
+      vBtn.addEventListener("click", async ()=>{
+        await updateDoc(doc(db,"users",u.uid), { verified: !u.verified });
+        toast(!u.verified ? "تیک آبی داده شد" : "تیک آبی حذف شد");
+      });
+      tdVerified.appendChild(vBtn);
+    } else { tdVerified.innerHTML = '<span class="hint">—</span>'; }
+    const tdCoins = document.createElement("td"); tdCoins.textContent = toFa(u.coins||0);
+    const tdAction = document.createElement("td");
+    const select = document.createElement("select"); select.className="role-select";
+    ["customer","vendor","operator","admin"].forEach(r=>{
+      const opt = document.createElement("option"); opt.value=r; opt.textContent=roleLabel(r);
+      if(r===u.role) opt.selected = true;
+      select.appendChild(opt);
+    });
+    select.disabled = !isOperator;
+    select.addEventListener("change", async ()=>{
+      await updateDoc(doc(db,"users",u.uid), { role: select.value });
+      toast("نقش "+u.name+" تغییر کرد");
+    });
+    tdAction.appendChild(select);
+    tr.appendChild(tdName); tr.appendChild(tdUser); tr.appendChild(tdTg); tr.appendChild(tdRole); tr.appendChild(tdVerified); tr.appendChild(tdCoins); tr.appendChild(tdAction);
+    tbody.appendChild(tr);
+  });
+
+  const jobsTbody = document.getElementById("allJobsTbody");
+  jobsTbody.innerHTML = "";
+  jobsCache.forEach(j=>{
+    const seller = findUserByUid(j.sellerId);
+    const tr = document.createElement("tr");
+    tr.innerHTML = '<td>'+escapeHtml(j.accountType||"")+'</td><td>'+escapeHtml(seller?seller.name:"-")+'</td><td>'+escapeHtml(j.price||"")+'</td><td></td>';
+    const delBtn = document.createElement("button"); delBtn.className="btn sm danger"; delBtn.type="button"; delBtn.textContent="حذف";
+    delBtn.addEventListener("click", async ()=>{ await updateDoc(doc(db,"jobs",j.id), { status:"closed" }); });
+    tr.lastElementChild.appendChild(delBtn);
+    jobsTbody.appendChild(tr);
+  });
+}
+
+document.getElementById("grantCoinForm").addEventListener("submit", async (e)=>{
+  e.preventDefault();
+  const user = currentUserDoc;
+  if(!user || (user.role!=="operator" && user.role!=="admin")) return;
+  const username = document.getElementById("grantUsername").value.trim();
+  const amount = Number(document.getElementById("grantAmount").value);
+  const target = findUserByUsername(username);
+  if(!target){ toast("کاربری با این نام‌کاربری پیدا نشد"); return; }
+  if(!amount || amount<=0){ toast("مقدار سکه معتبر وارد کن"); return; }
+  await updateDoc(doc(db,"users",target.uid), { coins: (target.coins||0) + amount });
+  e.target.reset();
+  toast(toFa(amount) + " سکه به " + target.name + " اعطا شد");
+});
+
+/* ---------- chat ---------- */
+const emojiRow = document.getElementById("emojiRow");
+function renderEmojiRow(){
+  emojiRow.innerHTML = "";
+  let set = BASIC_EMOJIS.slice();
+  if(currentUserDoc && currentUserDoc.emojiPack) set = set.concat(EXCLUSIVE_EMOJIS);
+  set.forEach(e=>{
+    const btn = document.createElement("button"); btn.type="button"; btn.textContent=e;
+    btn.addEventListener("click", ()=>{
+      const input = document.getElementById("chatInput");
+      input.value = (input.value + " " + e).trim();
+      input.focus();
+    });
+    emojiRow.appendChild(btn);
+  });
+}
+function renderChat(){
+  renderEmojiRow();
+  const box = document.getElementById("chatMessages");
+  if(!box) return;
+  box.innerHTML = "";
+  if(chatCache.length===0){ box.innerHTML = '<div class="empty">هنوز پیامی ارسال نشده. اولین نفر باش!</div>'; return; }
+  chatCache.forEach(m=>{
+    const sender = findUserByUid(m.userId);
+    const row = document.createElement("div"); row.className="chat-msg";
+    const av = document.createElement("div"); av.className="avatar";
+    av.style.background = "linear-gradient(135deg, var(--accent), var(--accent-2))";
+    av.style.color = "var(--accent-fg)"; av.style.width="30px"; av.style.height="30px"; av.style.fontSize=".78rem";
+    av.textContent = (m.userName||"?").charAt(0);
+    const bubble = document.createElement("div"); bubble.className="bubble";
+    bubble.innerHTML = '<div class="who">'+escapeHtml(m.userName)+(sender?verifiedBadgeHtml(sender):"")+'<span class="when">'+relTime(m.createdAt)+'</span></div><div></div>';
+    bubble.querySelector("div:last-child").textContent = m.text;
+    row.appendChild(av); row.appendChild(bubble); box.appendChild(row);
+  });
+  box.scrollTop = box.scrollHeight;
+}
+document.getElementById("chatForm").addEventListener("submit", async (e)=>{
+  e.preventDefault();
+  const user = currentUserDoc;
+  if(!user) return;
+  const input = document.getElementById("chatInput");
+  const text = input.value.trim();
+  if(!text) return;
+  input.value = "";
+  await addDoc(collection(db,"chatMessages"), { userId: currentUid, userName:user.name, text, createdAt: Date.now() });
+});
+
+/* ---------- support tickets (operator-only reply) ---------- */
+function renderTickets(){
+  const wrap = document.getElementById("ticketsWrap");
+  const hintEl = document.getElementById("ticketsHint");
+  if(!wrap) return;
+  const user = currentUserDoc;
+  wrap.innerHTML = "";
+
+  if(user.role==="operator"){
+    hintEl.textContent = "فقط اوپراتور می‌تواند به تیکت‌ها پاسخ دهد";
+    if(ticketsCache.length===0){ wrap.innerHTML = '<div class="empty">هیچ تیکتی ثبت نشده.</div>'; return; }
+    ticketsCache.slice().sort((a,b)=>b.createdAt-a.createdAt).forEach(t=>{
+      const sender = findUserByUid(t.userId);
+      const card = document.createElement("div"); card.className="ticket-card";
+      card.innerHTML = '<div style="display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;"><b>'+escapeHtml(t.subject)+'</b>' +
+        '<span class="tag '+(t.status==="answered"?"open":"warn")+'">'+(t.status==="answered"?"پاسخ داده شد":"در انتظار پاسخ")+'</span></div>' +
+        '<p class="hint">از طرف: '+escapeHtml(sender?sender.name:"کاربر حذف‌شده")+' — '+relTime(t.createdAt)+'</p>' +
+        '<p class="desc">'+escapeHtml(t.message)+'</p>';
+      const replyBox = document.createElement("div"); replyBox.className="reply-box";
+      if(t.reply){
+        replyBox.innerHTML = '<p><b>پاسخ اوپراتور:</b> '+escapeHtml(t.reply)+'</p>';
+      } else {
+        const ta = document.createElement("textarea"); ta.placeholder="پاسخت را بنویس…"; ta.style.minHeight="60px";
+        const sendBtn = document.createElement("button"); sendBtn.className="btn sm primary"; sendBtn.type="button"; sendBtn.textContent="ارسال پاسخ"; sendBtn.style.marginTop="6px";
+        sendBtn.addEventListener("click", async ()=>{
+          const replyText = ta.value.trim();
+          if(!replyText) return;
+          await updateDoc(doc(db,"tickets",t.id), { reply:replyText, status:"answered", repliedAt: Date.now() });
+          toast("پاسخ ارسال شد");
+        });
+        replyBox.appendChild(ta); replyBox.appendChild(sendBtn);
+      }
+      card.appendChild(replyBox); wrap.appendChild(card);
+    });
+    return;
+  }
+
+  hintEl.textContent = "فقط اوپراتور (Raven) به تیکت‌ها پاسخ می‌دهد";
+  const formCard = document.createElement("form"); formCard.className="form-card"; formCard.style.marginBottom="18px";
+  formCard.innerHTML = '<div class="field"><label>موضوع</label><input id="tkSubject" required placeholder="موضوع تیکت"></div>' +
+    '<div class="field"><label>پیام</label><textarea id="tkMessage" required placeholder="مشکلت رو توضیح بده"></textarea></div>' +
+    '<button class="btn primary" type="submit">ارسال تیکت</button>';
+  formCard.addEventListener("submit", async (e)=>{
+    e.preventDefault();
+    const subject = formCard.querySelector("#tkSubject").value.trim();
+    const message = formCard.querySelector("#tkMessage").value.trim();
+    if(!subject || !message) return;
+    await addDoc(collection(db,"tickets"), { userId: currentUid, subject, message, status:"open", reply:null, createdAt: Date.now() });
+    formCard.reset();
+    toast("تیکت ارسال شد");
+  });
+  wrap.appendChild(formCard);
+
+  const mine = ticketsCache.filter(t=>t.userId===currentUid);
+  if(mine.length===0){ wrap.appendChild(Object.assign(document.createElement("div"), {className:"empty", textContent:"هنوز تیکتی ثبت نکرده‌ای."})); return; }
+  mine.slice().sort((a,b)=>b.createdAt-a.createdAt).forEach(t=>{
+    const card = document.createElement("div"); card.className="ticket-card";
+    card.innerHTML = '<div style="display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;"><b>'+escapeHtml(t.subject)+'</b>' +
+      '<span class="tag '+(t.status==="answered"?"open":"warn")+'">'+(t.status==="answered"?"پاسخ داده شد":"در انتظار پاسخ")+'</span></div>' +
+      '<p class="desc">'+escapeHtml(t.message)+'</p>' +
+      (t.reply ? '<div class="reply-box"><b>پاسخ اوپراتور:</b> '+escapeHtml(t.reply)+'</div>' : '');
+    wrap.appendChild(card);
+  });
+}
+
+/* ---------- lucky wheel ---------- */
+const wheelBackdrop = document.getElementById("wheelBackdrop");
+const wheelDisc = document.getElementById("wheelDisc");
+let wheelSpinning = false;
+let wheelRotation = 0;
+
+function buildWheelVisual(){
+  const n = WHEEL_PRIZES.length;
+  const slice = 360/n;
+  const stops = [];
+  for(let i=0;i<n;i++){
+    const from=(i*slice).toFixed(2), to=((i+1)*slice).toFixed(2);
+    stops.push(WHEEL_COLORS[i%WHEEL_COLORS.length]+" "+from+"deg "+to+"deg");
+  }
+  wheelDisc.style.background = "conic-gradient("+stops.join(",")+")";
+  wheelDisc.querySelectorAll(".wheel-slice-label").forEach(el=>el.remove());
+  WHEEL_PRIZES.forEach((p,i)=>{
+    const centerAngle = i*slice + slice/2;
+    const label = document.createElement("div");
+    label.className = "wheel-slice-label";
+    label.style.transform = "rotate("+centerAngle+"deg)";
+    label.textContent = p.label;
+    wheelDisc.appendChild(label);
+  });
+}
+function spinCostForUser(user){ return SPIN_COSTS[Math.min(user.spinCount||0, SPIN_COSTS.length-1)]; }
+function updateWheelCostLine(){
+  const user = currentUserDoc;
+  if(!user) return;
+  document.getElementById("wheelCostLine").textContent =
+    "هزینه این چرخش: " + toFa(spinCostForUser(user)) + " سکه — موجودی تو: " + toFa(user.coins||0) + " سکه";
+}
+function openWheel(){
+  if(!currentUserDoc){ openAuth("login"); return; }
+  buildWheelVisual();
+  document.getElementById("wheelResult").textContent = "";
+  updateWheelCostLine();
+  wheelBackdrop.hidden = false;
+}
+function closeWheel(){ if(wheelSpinning) return; wheelBackdrop.hidden = true; }
+document.getElementById("fabWheel").addEventListener("click", openWheel);
+document.getElementById("btnCloseWheel").addEventListener("click", closeWheel);
+wheelBackdrop.addEventListener("click", e=>{ if(e.target===wheelBackdrop) closeWheel(); });
+
+document.getElementById("btnSpin").addEventListener("click", async ()=>{
+  if(wheelSpinning) return;
+  const user = currentUserDoc;
+  if(!user) return;
+  const cost = spinCostForUser(user);
+  if((user.coins||0) < cost){ toast("سکه کافی نداری — حداقل "+toFa(cost)+" سکه لازم است"); return; }
+
+  wheelSpinning = true;
+  document.getElementById("btnSpin").disabled = true;
+  document.getElementById("wheelResult").textContent = "در حال چرخش…";
+
+  await updateDoc(doc(db,"users",currentUid), { coins:(user.coins||0)-cost, spinCount:(user.spinCount||0)+1 });
+  updateWheelCostLine();
+
+  const prizeIndex = Math.floor(Math.random()*WHEEL_PRIZES.length);
+  const slice = 360/WHEEL_PRIZES.length;
+  const centerAngle = prizeIndex*slice + slice/2;
+  const target = 5*360 + (360-centerAngle);
+  wheelRotation += target;
+  wheelDisc.style.transform = "rotate("+wheelRotation+"deg)";
+
+  setTimeout(async ()=>{
+    await applyWheelPrize(WHEEL_PRIZES[prizeIndex]);
+    wheelSpinning = false;
+    document.getElementById("btnSpin").disabled = false;
+    updateWheelCostLine();
+  }, 4200);
+});
+
+async function applyWheelPrize(prize){
+  const user = currentUserDoc;
+  const resultEl = document.getElementById("wheelResult");
+  if(prize.type==="none"){
+    resultEl.textContent = "پوچ! شانس بعدی مال توئه 😅"; toast("پوچ — موفق باشی دفعه بعد");
+  } else if(prize.type==="coins"){
+    await updateDoc(doc(db,"users",currentUid), { coins:(user.coins||0)+prize.amount });
+    resultEl.textContent = "🎉 "+toFa(prize.amount)+" سکه بردی!"; toast(toFa(prize.amount)+" سکه اضافه شد");
+  } else if(prize.type==="premium"){
+    await updateDoc(doc(db,"users",currentUid), { premium:true });
+    resultEl.textContent = "🏆 پک کامل پریمیوم رو بردی!"; toast("پک پریمیوم فعال شد");
+  } else if(prize.type==="emoji"){
+    await updateDoc(doc(db,"users",currentUid), { emojiPack:true });
+    resultEl.textContent = "😎 ایموجی‌های اختصاصی باز شد!"; toast("ایموجی اختصاصی فعال شد");
+  } else if(prize.type==="ad_hour"){
+    resultEl.textContent = "📣 یک ساعت تبلیغات رایگان بردی!"; toast("برای فعال‌سازی به آیدی اونر مراجعه کن");
+  } else if(prize.type==="ad_day"){
+    const text = window.prompt ? window.prompt("متن تبلیغت رو بنویس تا یک روز بالای سایت نمایش داده بشه:", "") : "";
+    if(text && text.trim()){
+      await setDoc(doc(db,"siteBanner","current"), { text:text.trim(), by:user.name, expiresAt: Date.now()+24*60*60*1000 });
+      resultEl.textContent = "📣 یک روز تبلیغات رایگان بردی و فعال شد!"; toast("بنر تبلیغاتی‌ات تا ۲۴ ساعت فعاله");
+    } else {
+      resultEl.textContent = "📣 یک روز تبلیغات رایگان بردی! (متنی ثبت نشد)";
+    }
+  }
+}
+
+/* ---------- boot ---------- */
+if(!firebaseReady){ renderMarketing(); }
+</script>
+</body>
+</html>
